@@ -85,7 +85,7 @@ body {
     height: 30vh;
     width: 60vw;
     position: absolute;
-    bottom: 250px;
+    bottom: 45vh;
     left: 0;
     animation: alienSideMove 15s linear infinite;
 
@@ -146,6 +146,15 @@ body {
     /* display: none; */
 }
 
+#alienBullet1 {
+    position: absolute;
+    width: 0.3vw;
+    height: 1vh;
+    background: white;
+    z-index: -1;
+    /* display: none; */
+}
+
 @keyframes alienSideMove {
     0% {left: 0}
     50% {left: 30vw}
@@ -156,9 +165,9 @@ body {
     animation: alienHit 0.3s linear forwards;
 }
 
-alienXMove {
+/* .alienXMove {
     animation: alienX 10s linear;
-}
+} */
 
 
 @keyframes alienHit {

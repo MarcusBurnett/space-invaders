@@ -3,10 +3,10 @@ var alienContainer = document.getElementById('alienContainer')
 var aliens = document.querySelectorAll('.alien');
 var newBullet = document.createElement("div");
 var alienBullet1 = document.createElement("div");
-var alienBullet2 = document.createElement("div");
-var alienBullet3 = document.createElement("div");
-var alienBullet4 = document.createElement("div");
-var alienBullet5 = document.createElement("div");
+// var alienBullet2 = document.createElement("div");
+// var alienBullet3 = document.createElement("div");
+// var alienBullet4 = document.createElement("div");
+// var alienBullet5 = document.createElement("div");
 var scoreDisplay = document.getElementById('score');
 var levelCompleteMsg = document.getElementById('levelComplete');
 var shields = document.querySelectorAll('.shield');
@@ -14,16 +14,20 @@ var score = 0;
 var alienNum = 44;
 var aliensHit = 0;
 var bulletFired = false;
+var alienBullet1Fired = false;
 var levelComplete = false;
 newBullet.id = "bullet";
 alienBullet1.id = "alienBullet1"
-alienBullet2.id = "alienBullet2"
-alienBullet3.id = "alienBullet3"
-alienBullet4.id = "alienBullet4"
-alienBullet5.id = "alienBullet5"
+// alienBullet2.id = "alienBullet2"
+// alienBullet3.id = "alienBullet3"
+// alienBullet4.id = "alienBullet4"
+// alienBullet5.id = "alienBullet5"
 
 newBullet.y = 55;
+alienBullet1.bottom = aliens[0].getBoundingClientRect().bottom;
 
+
+console.log(aliens[0].getBoundingClientRect().bottom)
 /// store key codes and currently pressed ones
 var keys = {};
 
@@ -44,6 +48,13 @@ var bullet = {
   y: 55,
   speedMultiplier: 3,
   element: newBullet
+};
+
+var a1Bullet = {
+  x: 47.5,
+  y: 55,
+  speedMultiplier: 3,
+  element: alienBullet1
 };
 
   document.addEventListener('keyup', (e) => {
@@ -144,21 +155,23 @@ setInterval(function () {
 // space bar = 32,
 // rightKey = 39
 // leftKey = 37
+
 var bulletMovement = setInterval(bulletFire, 5);
+
 function bulletFire(bulletMovement) {
   if (aliensHit < alienNum ) {
-    if (bullet.y < 650) {
+    if (bullet.y < 750) {
       sprite.element.style.top = sprite.y + 'vw';
-
       shieldHit();
       alienHit();
       if(bulletFired){
       moveBullet(0, 0.5);
-      console.log("fire");
+
       }
       
     } else {
       clearInterval(bulletMovement);
+      document.body.removeChild(newBullet);
       bulletFired = false;
       bullet.y = 55;
     }
@@ -204,11 +217,11 @@ function shieldHit(bulletMovement){
 
 // document.addEventListener('keyup', (e) => {
 
-//   if (event.keyCode === 32 && !bulletFired && !levelComplete) {
+//   if (event.keyCode === 13 && !levelComplete) {
 
-//     bulletFired = true;
-//     bullet.element.style.left = sprite.x + 1.85 + 'vw';
-//     bullet.element.style.bottom = bullet.y + 'px';
+//     alienBullet1Fired = true;
+//     a1Bullet.element.style.left = aliens[0].x + 1.85 + 'vw';
+//     a1Bullet.element.style.bottom = a1Bullet.y + 'px';
 
 //     if (e.preventDefault) {
 //       e.preventDefault();
@@ -217,60 +230,51 @@ function shieldHit(bulletMovement){
 //     }
 //     var kc = e.keyCode || e.which;
 //     keys[kc] = e.type == 'keyup';
-//     document.body.appendChild(newBullet);
+//     document.body.appendChild(alienBullet1);
 //   }
 // });
 
 
-// const moveBullet = (dx, dy) => {
+// const moveA1Bullet = (dx, dy) => {
 
-// bullet.x += (dx || 0) * bullet.speedMultiplier;
-// bullet.y += (dy || 0) * bullet.speedMultiplier;
-// bullet.element.style.bottom = bullet.y + 'px';
+// a1Bullet.x += (dx || 0) * a1Bullet.speedMultiplier;
+// a1Bullet.y += (dy || 0) * a1Bullet.speedMultiplier;
+// a1Bullet.element.style.bottom = a1Bullet.y + 'px';
 
 // };
 
 
-// const detectBulletMovement = () => {
-// if ((keys[keys.SPACE])) {
-//   if (!bulletFired && !levelComplete) {
+// const detectA1BulletMovement = () => {
+// if ((keys[keys.ENTER])) {
+//   if (!a1BulletFired && !levelComplete) {
 
 
     
-// bulletFire(bulletMovement);
+// a1BulletFire(a1BulletMovement);
 
-//     bulletFired = false;
-//     bullet.element.style.display = 'block';
-//     bullet.y = 55;
-//     bullet.element.style.left = sprite.x + 1.85 + 'vw';
+//     alienBullet1Fired = false;
+//     a1Bullet.element.style.display = 'block';
+//     a1Bullet.y = aliens[0].y;
+//     a1Bullet.element.style.left = aliens[0].x + 1.85 + 'vw';
 //   }
 // }
 
 // };
 
-// moveBullet();
+// moveA1Bullet();
 // /// game loop
 // setInterval(function () {
-// detectBulletMovement();
+// detectA1BulletMovement();
 // }, 10);
 
-// var alienBulletMovement = setInterval(alienBulletFire, 5);
+// var a1BulletMovement = setInterval(a1BulletFire, 5);
 
-// function alienBulletFire(alienBulletMovement) {
-//   if (aliensHit < alienNum ) {
-//     if (bullet.y < 650) {
-//       sprite.element.style.top = sprite.y + 'vw';
+// function a1BulletFire(a1BulletMovement) {
 
-//       shieldHit();
-//       alienHit();
-//       if(bulletFired){
-//       moveBullet(0, 0.5);
-//       console.log("fire");
-//       }
-      
-//     } else {
-//       clearInterval(alienBulletMovement);
-//       bullet.y = 55;
+//       if(alienBullet1Fired){
+//       moveA1Bullet(0, -0.5);
+//       } else {
+//       clearInterval(a1BulletMovement);
+//       a1Bullet.y = aliens[0];
 //     }
-//   } 
-// }
+//   }
