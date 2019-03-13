@@ -1,0 +1,177 @@
+body {
+    height: 98vh;
+    margin: 2vh 0;
+    width: 100vw;
+    font-family: 'Audiowide';
+    font-size: 0.8rem;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden
+}
+
+#levelComplete {
+    position: absolute;
+    display: none;
+    font-size: 4rem;
+    top: 30vh;
+    animation: levelComplete 2s forwards;
+}
+
+
+#spriteContainer {
+    position:relative;
+    width:100vw;
+    height:50px;
+}
+
+#sprite {
+    height: 3vw;
+    width: 4vw;
+}
+
+.life {
+    width: 5vw;
+    height: 3.3vw;
+    margin: 0.5vw;
+}
+
+#header {
+    display: flex;
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#scoreContainer {
+    margin-left: 3vw;
+    align-items: center;
+
+}
+
+#lives {
+    display: flex;
+    align-items: center;
+    width: auto;
+    justify-content: space-between;
+    margin-right: 3vw;
+}
+
+#lives h1 {
+    margin-right: 2vw;
+}
+
+#shieldContainer {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    /* margin-bottom: 5vh; */
+    margin-top: 50vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+#alienContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 30vh;
+    width: 60vw;
+    position: absolute;
+    bottom: 250px;
+    left: 0;
+    animation: alienSideMove 15s linear infinite;
+
+}
+
+.alien {
+    width: 3vw;
+    height: 4vh;
+    margin: 0 1vw;
+    transition: all 0.3s;
+}
+
+#alienX {
+    background: url(imgs/Alien3.png);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    left: -5vw;
+    top: 20vh;
+}
+
+.a1 {
+    background: url(imgs/Alien4.png);
+    background-size: cover;
+    background-position: center;
+
+}
+
+.a2 {
+    background: url(imgs/Alien2.png);
+    background-size: cover;
+    background-position: center;
+    margin-left: 1.135vw;
+    margin-right: 1.135vw;
+}
+
+.a3 {
+    background: url(imgs/Alien1.png);
+    background-size: cover;
+    background-position: center;
+    margin-left: 1.135vw;
+    margin-right: 1.135vw;
+}
+
+.shield {
+    width: 12vw;
+    height: 6vw;    
+    background-color: #33FF00;
+    border-radius: 1rem;
+}
+
+#bullet {
+    position: absolute;
+    width: 0.3vw;
+    height: 1vh;
+    background: white;
+    z-index: -1;
+    /* display: none; */
+}
+
+@keyframes alienSideMove {
+    0% {left: 0}
+    50% {left: 30vw}
+    100% {left: 0};
+}
+
+.alienHit {
+    animation: alienHit 0.3s linear forwards;
+}
+
+alienXMove {
+    animation: alienX 10s linear;
+}
+
+
+@keyframes alienHit {
+    5% {background-image: url(imgs/explode.png)}
+    100% {background: none};
+}
+
+@keyframes levelComplete {
+    0% {color: black}
+    100% {color: white};
+}
+
+@keyframes alienX {
+    0% {left: -5vw}
+    100% {left: 105vw}
+}
